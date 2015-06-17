@@ -1,0 +1,15 @@
+{
+  "name": "utils",
+  "version": "0.1.0",
+  "description": "Utility class",
+  "author": "mjbp",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-debug": "^2.0.1",
+    "gulp-header": "^1.2.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "run-sequence": "^1.1.0"
+  }
+}

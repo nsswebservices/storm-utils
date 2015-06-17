@@ -1,12 +1,12 @@
-/*global window */
-/**
- * @name UTILS
- * @description Common utility functions
- * @version 0.1.0: Fri, 05 Jun 2015 11:26 GMT
- * @author mjbp
- * @license ISC
- */
- var UTILS = (function(w, d) {
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.utils = factory();
+  }
+}(this, function() {
 	'use strict';
      
      /**
@@ -50,37 +50,10 @@
                  return this;
              },
             toggle: function(el, attr) {
-                el.setAttribute(attr, !el.getAttribute(attr));
+                el.setAttribute(attr, el.getAttribute(attr) === 'true' ? false : true);
                 return this;
             }
          };
-     
-     /**
-      * @name addEvents
-      * @description Attach multiple events to multiple elements
-      * @param els, array of DOM elements
-      * @param evts, string, event names separated by space
-      * @param fn, function to be evoked when event occurs
-      * @param rm, remove the event listener after one invocation
-      */
-     function addEvents(els, evts, fn, useCapture, rm) {
-         var events = evts.split(' '),
-             elements = Array.isArray(els) ? els : [els],
-             uC = !!useCapture ? useCapture : false;
-             
-         elements.forEach(function(el) {
-             events.forEach(function(ev) {
-                 if(!!rm) {
-                     fn = function() {
-                         fn.call(el);
-                         el.removeEventListener(ev, fn, useCapture);
-                     };
-                 }
-                 el.addEventListener(ev, fn, useCapture);
-             });
-         });
-     }
-     
      
      /**
       * @name extend
@@ -161,10 +134,8 @@
          throttle: throttle,
          debounce: debounce,
          merge: merge,
-         addEvents: addEvents,
          classlist: classlist,
          attributelist: attributelist
      };
-     
-     
- }());
+
+ }));
