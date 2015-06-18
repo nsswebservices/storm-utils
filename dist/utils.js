@@ -1,10 +1,18 @@
 /**
  * @name utils: Utility class
- * @version 0.1.0: Wed, 17 Jun 2015 15:29:08 GMT
+ * @version 0.1.0: Thu, 18 Jun 2015 11:00:24 GMT
  * @author mjbp
  * @license MIT
- */var UTILS = (function(w, d) {
-    'use strict';
+ */(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.utils = factory();
+  }
+}(this, function() {
+	'use strict';
      
      /**
       * @name classlist
@@ -47,37 +55,35 @@
                  return this;
              },
             toggle: function(el, attr) {
-                el.setAttribute(attr, !el.getAttribute(attr));
+                el.setAttribute(attr, el.getAttribute(attr) === 'true' ? false : true);
                 return this;
             }
          };
      
      /**
-      * @name extend
-      * @description Merges two (or more) objects, giving the last one precedence
-      */
-      function merge(target, source) {
-          if ( typeof target !== 'object') {
-              target = {};
-          }
-          
-          for (var property in source) {
-              if (source.hasOwnProperty(property)) {
-                  var sourceProperty = source[ property ];
-                  
-                  if ( typeof sourceProperty === 'object' ) {
-                      target[ property ] = merge( target[ property ], sourceProperty );
-                      continue;
-                  }
-                  target[property] = sourceProperty;
-              }
-          }
-          for (var a = 2, l = arguments.length; a < l; a++) {
-              merge(target, arguments[a]);
-          }
-          return target;
-      }
+      * @name merge
+      * @description Merges one object into another, returnning a third without modifiying the first
+      * @limitiations Depends on JSON.parse(JSON.stringify) trick to copy object
+     */
      
+     function merge(foo, bar) {
+          var fooCopy =  JSON.parse(JSON.stringify(foo)),
+              m = function(obj1, obj2) {
+                  for (var p in obj2) {
+                      try {
+                          if (obj2[p].constructor == Object ) {
+                              obj1[p] = m(obj1[p], obj2[p]);
+                          } else {
+                              obj1[p] = obj2[p];
+                          }
+                      } catch(e) {
+                        obj1[p] = obj2[p];
+                      }
+                  }
+                  return obj1;
+             };
+         return m(fooCopy, bar);
+     }
      
      /**
       * @name debounce
@@ -134,6 +140,5 @@
          classlist: classlist,
          attributelist: attributelist
      };
-     
-     
- }());
+
+ }));
