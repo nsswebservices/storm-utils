@@ -1,22 +1,15 @@
 /**
- * @name utils: Utility class
- * @version 0.1.0: Fri, 02 Oct 2015 08:39:41 GMT
+ * @name storm-utils: Common utility functions
+ * @version 0.2.1: Tue, 27 Oct 2015 16:05:30 GMT
  * @author mjbp
  * @license MIT
- *//*global window, document, console, define, require, XMLHttpRequest, module */
-/**
- * @name UTILS
- * @description Common utility functions
- * @version 0.1.0: Wed, 10 Jun 2015
- * @author mjbp
- * @license ISC
  */(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
     module.exports = factory();
   } else {
-    root.Utils = factory();
+    root.StormUtils = factory();
   }
 }(this, function() {
 	'use strict';
@@ -233,7 +226,46 @@
         }
         return s.join('&').replace(/%20/g, '+');
       }
+     
+     /**
+      * @name closest
+      * @description get the closest matching element up the DOM tree using element.matches()
+      * @param el, DOM element, starting element
+      * @param selector, DOM element, String, selector to test match
+      */
+      function closest(el, selector) {
+          if (el.closest) {
+            return el.closest(selector);
+          }
 
+          var matches = el.matches || el.msMatchesSelector;
+
+          do {
+            if (el.nodeType != 1) continue;
+            if (matches.call(el, selector)) return el;
+          } while (el = el.parentNode);
+
+          return undefined;
+      }
+     
+     /**
+      * @name escapeHTML
+      * @description escape HTML entities in a string
+      * @param string, String, the string...
+      */
+      function escapeHTML(string) {
+          var entityMap = {
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': '&quot;',
+              "'": '&#39;',
+              "/": '&#x2F;'
+          };
+          return String(string).replace(/[&<>"'\/]/g, function (s) {
+              return entityMap[s];
+          });
+      }
      
      return {
          throttle: throttle,
@@ -244,6 +276,8 @@
          attributelist: attributelist,
          loadJS: loadJS,
          serialize: serialize,
-         xhr: xhr
+         xhr: xhr,
+         closest: closest,
+         escapeHTML: escapeHTML
      };
  }));

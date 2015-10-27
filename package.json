@@ -5,23 +5,23 @@
   "author": "mjbp",
   "license": "MIT",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/mjbp/storm-utils.git"
+    "type": "git",
+    "url": "https://github.com/mjbp/storm-utils.git"
   },
   "bugs": {
-      "url": "https://github.com/mjbp/storm-utils/issues"
+    "url": "https://github.com/mjbp/storm-utils/issues"
   },
   "main": "dist/storm.utils.js",
-  "keywords": {
-      "stormid",
-      "utilities"
-  },
+  "keywords": [
+    "stormid",
+    "utilities"
+  ],
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-debug": "^2.0.1",
     "gulp-header": "^1.2.2",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
     "run-sequence": "^1.1.0"
   }
 }

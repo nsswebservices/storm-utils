@@ -1,6 +1,6 @@
 #Storm Utils
 
-Small js utility functions providing common useful helper functions including
+Collections of basic js utility functions providing oft-used functions including
 - element.classlist manipulation
 - element.attribute manipulation
 - merge one object into another, or a third

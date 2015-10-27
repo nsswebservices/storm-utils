@@ -1,11 +1,4 @@
-/*global window, document, console, define, require, XMLHttpRequest, module */
-/**
- * @name UTILS
- * @description Common utility functions
- * @version 0.1.0: Wed, 10 Jun 2015
- * @author mjbp
- * @license ISC
- */(function(root, factory) {
+(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {

@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     pkg = require('./package.json'),
     header = require('gulp-header'),
     notify = require('gulp-notify'),
-    plumber = require('gulp-plumber'),
-    debug = require('gulp-debug'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
     runSequence = require('run-sequence');
 
 
@@ -38,13 +38,17 @@ var onError = function(err) {
 gulp.task('js', function() {
     return gulp.src('src/*.js')
 		.pipe(header(banner, {pkg : pkg}))
-		.pipe(debug())
+		.pipe(gulp.dest('dist/'));
+});
+
+gulp.task('build', ['js'], function() {
+    return gulp.src('dist/*.js')
+		.pipe(uglify())
+  		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist/'));
 });
 
 /************************
  *  Task collection API
  ************************/
-gulp.task('default', ['js']);
-
-
+gulp.task('default', ['build']);
