@@ -1,6 +1,6 @@
 /**
  * @name storm-utils: Common utility functions
- * @version 0.2.1: Tue, 27 Oct 2015 16:05:30 GMT
+ * @version 0.2.1: Tue, 27 Oct 2015 18:00:18 GMT
  * @author mjbp
  * @license MIT
  */(function(root, factory) {

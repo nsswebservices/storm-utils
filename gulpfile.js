@@ -42,7 +42,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('build', ['js'], function() {
-    return gulp.src('dist/*.js')
+    return gulp.src('dist/storm.utils.js')
 		.pipe(uglify())
   		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist/'));
