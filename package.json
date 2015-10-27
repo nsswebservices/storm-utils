@@ -1,9 +1,21 @@
 {
-  "name": "utils",
-  "version": "0.1.0",
-  "description": "Utility class",
+  "name": "storm-utils",
+  "version": "0.2.1",
+  "description": "Common utility functions",
   "author": "mjbp",
   "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/mjbp/storm-utils.git"
+  },
+  "bugs": {
+      "url": "https://github.com/mjbp/storm-utils/issues"
+  },
+  "main": "dist/storm.utils.js",
+  "keywords": {
+      "stormid",
+      "utilities"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-debug": "^2.0.1",
